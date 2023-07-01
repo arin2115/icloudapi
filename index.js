@@ -222,7 +222,6 @@ var icloud = {
 			icloud.AccountHeaders['X-Apple-TwoSV-Trust-Token'] = response.headers['x-apple-twosv-trust-token'];
 
 			icloud.trustToken = response.headers['x-apple-twosv-trust-token'];
-			console.log("SAVE: ", icloud.apple_id, icloud.password, icloud.googleApiKey, icloud.trustToken);
 			fs.writeFileSync("./settings.json", JSON.stringify({
 				apple_id: icloud.apple_id,
 				password: icloud.password,
@@ -349,40 +348,72 @@ var icloud = {
 
 	getDevices: function(callback) {
 		icloud.init(function(error, response, body) {
-			if (!response || response.statusCode != 200) {
-				return callback(error);
+			if (response.statusCode == 450) {
+				try {
+					fs.unlinkSync("cookies.json");
+					icloud.login();
+				} catch (err) {}
+				icloud.signInRequest(function(info) {
+					if (info.toString().startsWith("Login Error")) {
+						return callback(info);
+					}
+		
+					if (info == false) {
+						icloud.AccountLoginRequest(function(info) {
+							if (info.toString().startsWith("Login Error")) {
+								return callback(info);
+							}
+	
+							icloud.onLogin(info, function(err, resp, body) {
+								return callback(err, resp, body);
+							});
+						});
+					} else {
+						try {
+							fs.unlinkSync("cookies.json");
+							icloud.login();
+						} catch (err) {}
+					}
+				});
+			} else {
+				if (!response || response.statusCode != 200) {
+					return callback(error);
+				}
+	
+				var devices = [];
+	
+				// Retrieve each device on the account
+				body.content.forEach(function(device) {
+					devices.push({
+						id: device.id,
+						name: device.name,
+						deviceModel: device.deviceModel,
+						activationLocked: device.activationLocked,
+						deviceStatus: device.deviceStatus,
+						passcodeLength: device.passcodeLength,
+						modelDisplayName: device.modelDisplayName,
+						deviceDisplayName: device.deviceDisplayName,
+						batteryLevel: device.batteryLevel,
+						batteryStatus: device.batteryStatus,
+						audioChannels: device.audioChannels,
+						isLocating: device.isLocating,
+						lostModeCapable: device.lostModeCapable,
+						location: device.location
+					});
+				});
+	
+				return callback(error, devices);
 			}
 
-			var devices = [];
-
-			// Retrieve each device on the account
-			body.content.forEach(function(device) {
-				devices.push({
-					id: device.id,
-					name: device.name,
-					deviceModel: device.deviceModel,
-					activationLocked: device.activationLocked,
-					deviceStatus: device.deviceStatus,
-					passcodeLength: device.passcodeLength,
-					modelDisplayName: device.modelDisplayName,
-					deviceDisplayName: device.deviceDisplayName,
-					batteryLevel: device.batteryLevel,
-					batteryStatus: device.batteryStatus,
-					audioChannels: device.audioChannels,
-					isLocating: device.isLocating,
-					lostModeCapable: device.lostModeCapable,
-					location: device.location
-				});
-			});
-
-			callback(error, devices);
+			callback(error, []);
 		});
 	},
 
-	alertDevice: function(deviceId, callback) {
+	alertDevice: function(deviceId, callback, subject = "Find My Alert") {
 		var options = {
 			url: icloud.base_path + "/fmipservice/client/web/playSound",
 			json: {
+				"subject": subject,
 				"device": deviceId
 			}
 		};

@@ -1,0 +1,6 @@
+{
+    "apple_id": "mail@domain.tld",
+    "password": "password",
+    "googleApiKey": "google geocoding api key",
+    "trustToken": "leave empty if you don't have one"
+}
