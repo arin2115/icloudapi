@@ -27,7 +27,7 @@ npm install apple-icloudapi
 ```
 var icloud = require("icloudapi");
 
-icloud.settingsFile = "./settings.json";
+icloud.icloudSettingsFile = "./settings.json";
 
 icloud.getDevices((err, devices) => {
 	if (err) return err;
@@ -42,7 +42,7 @@ If You encounter any issues, create [issue](https://github.com/arin2115/icloudap
 You can support me on paypal, [link](https://www.paypal.com/paypalme/arin2115)
 
 ## **Create a bug report**
-If You see an error message, please create [bug report](https://github.com/arin2115/icloudapi/issues/new?labels=bug&template=bug_report.md). This would help us fixing errors in the future version of **ATime**.
+If You see an error message, please create [bug report](https://github.com/arin2115/icloudapi/issues/new?labels=bug&template=bug_report.md). This would help us fixing errors in the future version of **iCloud API**.
 
 ## **Create a feature request**
 If You have an idea that we can add to our project, please create [feature request](https://github.com/arin2115/icloudapi/issues/new?labels=enhancement&template=feature_request.md) and describe Your idea. That way we can upgrade out project over time with new ideas. Thanks!
