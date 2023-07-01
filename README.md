@@ -19,7 +19,7 @@
 
 ## **Installation**
 ```shell
-npm install icloudapi
+npm install apple-icloudapi
 ```
 ### And You're ready to go! :tada:
 
