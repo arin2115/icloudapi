@@ -39,7 +39,7 @@ For more information see [Wiki Page](https://github.com/arin2115/icloudapi/wiki)
 
 ## **Support**
 If You encounter any issues, create [issue](https://github.com/arin2115/icloudapi/issues/new) and describe Your issue.
-You can support me on paypal, [link]()
+You can support me on paypal, [link](https://www.paypal.com/paypalme/arin2115)
 
 ## **Create a bug report**
 If You see an error message, please create [bug report](https://github.com/arin2115/icloudapi/issues/new?labels=bug&template=bug_report.md). This would help us fixing errors in the future version of **ATime**.
