@@ -1,0 +1,43 @@
+{
+  "name": "icloudapi",
+  "version": "1.0.0",
+  "description": "iCloud API Wrapper",
+  "main": "index.js",
+  "author": "arin2115",
+  "keywords": [
+    "apple",
+    "iphone",
+    "ipad",
+    "macbook",
+    "airtag",
+    "watch",
+    "find",
+    "icloud",
+    "findmy",
+    "findmyiphone",
+    "findmypro",
+    "iclouddrive",
+    "icloudmail",
+    "icloudcontacts",
+    "icloudcalendar",
+    "icloudphotos",
+    "icloudreminders",
+    "icloudnotes"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arin2115/icloud-findmy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arin2115/icloud-findmy/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.1.4",
+    "fs": "^0.0.1-security",
+    "prompt-sync": "^4.2.0",
+    "request": "^2.57.0",
+    "tough-cookie-file-store": "^2.0.3",
+    "util": "^0.12.5"
+  }
+}
