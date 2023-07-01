@@ -1,5 +1,5 @@
 {
-  "name": "icloudapi",
+  "name": "apple-icloudapi",
   "version": "1.0.0",
   "description": "iCloud API Wrapper",
   "main": "index.js",
@@ -26,10 +26,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/arin2115/icloud-findmy.git"
+    "url": "git+https://github.com/arin2115/icloudapi.git"
   },
   "bugs": {
-    "url": "https://github.com/arin2115/icloud-findmy/issues"
+    "url": "https://github.com/arin2115/icloudapi/issues/new?assignees=&labels=bug&projects=&template=bug_report.md"
   },
   "license": "MIT",
   "dependencies": {
@@ -39,5 +39,10 @@
     "request": "^2.57.0",
     "tough-cookie-file-store": "^2.0.3",
     "util": "^0.12.5"
+  },
+  "homepage": "https://github.com/arin2115/icloudapi#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
