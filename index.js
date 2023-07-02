@@ -310,7 +310,9 @@ var icloud = {
 						} else {
 							try {
 								fs.unlinkSync("cookies.json");
-								icloud.login();
+								icloud.login(() => {
+
+								});
 							} catch (err) {}
 						}
 					});
@@ -351,7 +353,9 @@ var icloud = {
 			if (response.statusCode == 450) {
 				try {
 					fs.unlinkSync("cookies.json");
-					icloud.login();
+					icloud.login(() => {
+
+					});
 				} catch (err) {}
 				icloud.signInRequest(function(info) {
 					if (info.toString().startsWith("Login Error")) {
@@ -371,7 +375,9 @@ var icloud = {
 					} else {
 						try {
 							fs.unlinkSync("cookies.json");
-							icloud.login();
+							icloud.login(() => {
+						
+							});
 						} catch (err) {}
 					}
 				});
