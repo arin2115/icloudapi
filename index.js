@@ -222,7 +222,7 @@ var icloud = {
 			icloud.AccountHeaders['X-Apple-TwoSV-Trust-Token'] = response.headers['x-apple-twosv-trust-token'];
 
 			icloud.trustToken = response.headers['x-apple-twosv-trust-token'];
-			fs.writeFileSync("./settings.json", JSON.stringify({
+			fs.writeFileSync(icloud.icloudSettingsFile, JSON.stringify({
 				apple_id: icloud.apple_id,
 				password: icloud.password,
 				googleApiKey: icloud.googleApiKey,
