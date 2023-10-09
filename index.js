@@ -231,7 +231,8 @@ var icloud = {
 				apple_id: icloud.apple_id,
 				password: icloud.password,
 				googleApiKey: icloud.googleApiKey,
-				trustToken: icloud.trustToken
+				trustToken: icloud.trustToken,
+				unattended: icloud.unattended
 			}, null, 4));
 
 			if (!response || response.statusCode != 204) {
