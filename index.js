@@ -190,15 +190,15 @@ var icloud = {
 			icloud.AccountHeaders['X-Apple-Session-Token'] = response.headers['x-apple-session-token'];
 			
 			if (response.statusCode == 400) {
-				return callback("Login error | Invalid 2FA Code");
+				return callback("Login Error | Invalid 2FA Code");
 			}
 
 			if (!response || response.statusCode != 204) {
-				return callback("Login error | Unable to verify 2FA code");
+				return callback("Login Error | Unable to verify 2FA code");
 			}
 
 			if (response.headers["x-apple-session-token"] == null) {
-				return callback("Login error | Something went wrong with 2FA verification");
+				return callback("Login Error | Something went wrong with 2FA verification");
 			}
 
 			return callback(true);
@@ -230,11 +230,11 @@ var icloud = {
 			}, null, 4));
 
 			if (!response || response.statusCode != 204) {
-				return callback("Login error | Unable to get trust token");
+				return callback("Login Error | Unable to get trust token");
 			}
 
 			if (response.headers["x-apple-session-token"] == null || response.headers["x-apple-twosv-trust-token"] == null) {
-				return callback("Login error | Invalid trust token response");
+				return callback("Login Error | Invalid trust token response");
 			}
 
 			return callback(true);
@@ -268,11 +268,11 @@ var icloud = {
 			}
 
 			if (!response || response.statusCode != 200) {
-				return callback("Login error | Unable to login");
+				return callback("Login Error | Unable to login");
 			}
 
 			if (body.dsInfo.dsid == null) {
-				return callback("Login error | Missing account dsid");
+				return callback("Login Error | Missing account dsid");
 			}
 
 			return callback(body);
