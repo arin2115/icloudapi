@@ -24,6 +24,7 @@ var icloud = {
 		icloud.password = settings.password;
 		icloud.googleApiKey = settings.googleApiKey;
 		icloud.trustToken = settings.trustToken;
+		icloud.unattended = settings.unattended;
 
 		var newLogin = !icloud.hasOwnProperty("jar");
 		if (newLogin) {
@@ -168,6 +169,10 @@ var icloud = {
 	},
 
 	TwoFACodeRequest: function(callback) {
+		if (icloud.unattended === true) {
+			return callback("Login Error | Unattended Mode is active, unable to get 2FA code");
+		}
+
 		const code = prompt("2FA Code: ");
 
 		var options = {
