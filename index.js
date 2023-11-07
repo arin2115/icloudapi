@@ -322,7 +322,11 @@ var icloud = {
 							} catch (err) {}
 						}
 					});
-				} 
+				} else if(resp) {
+					return callback("Login Error | Got "+resp.statusCode+" on Login");
+				} else {
+					return callback("Login Error | Login failed");
+				}
 
 				return callback(err, resp, body);
 			});
@@ -356,7 +360,7 @@ var icloud = {
 
 	getDevices: function(callback) {
 		icloud.init(function(error, response, body) {
-			if (response.statusCode == 450) {
+			if (response && response.statusCode == 450) {
 				try {
 					fs.unlinkSync("cookies.json");
 					icloud.login(() => {
